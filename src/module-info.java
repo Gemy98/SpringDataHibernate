@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * @author Jimmy
- *
- */
-module SpringDataHibernate {
-}

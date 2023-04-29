@@ -1,0 +1,9 @@
+/**
+ * 
+ */
+/**
+ * @author Jimmy
+ *
+ */
+module SpringDataHibernate {
+}

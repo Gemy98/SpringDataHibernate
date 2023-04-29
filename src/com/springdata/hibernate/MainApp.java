@@ -10,20 +10,27 @@ public class MainApp {
 		// TODO Auto-generated method stub
 
 		
-		String url ="jdbc:mysql://localhost:3306/employee?useSSL=false"; 
-		String username ="root"; 
-		String Password = "root"; 
 		
-		try {
-			Connection connection = DriverManager.getConnection(
-					url,username,Password);
-			System.out.println("Connected");
-			System.out.println(connection);
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			System.out.println(e.toString());
-		}
+		
+		
+		
 	}
 
 }  
+
+/*
+String url ="jdbc:mysql://localhost:3306/employee?useSSL=false"; 
+String username ="root"; 
+String Password = "root"; 
+
+try {
+	Connection connection = DriverManager.getConnection(
+			url,username,Password);
+	System.out.println("Connected");
+	System.out.println(connection);
+
+} catch (SQLException e) {
+	// TODO Auto-generated catch block
+	System.out.println(e.toString());
+}
+*/

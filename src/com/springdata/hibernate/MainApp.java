@@ -25,7 +25,7 @@ public class MainApp {
 		
 		 
 	Client client = new Client();
-	client.setId((long)1);
+	//client.setId((long)1);
 	client.setAge(20);
 	client.setAddress("Cairo");
 	client.setFullName("MohamedGamal");

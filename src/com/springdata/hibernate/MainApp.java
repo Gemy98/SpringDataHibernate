@@ -31,15 +31,13 @@ public class MainApp {
 	long z = 2 ; 
 	try {
 		session.beginTransaction();
-		
-		Client client = session.get(Client.class, z);
-		
-
+		Client c = new Client("ahmed",30,"tanta");
+		c.setId((long)2);
+		session.update(c);
+			
 		session.getTransaction().commit();
 		
 		System.out.println("commit Success");
-		
-		System.out.println(client.getFullName()+ "\n" +client.getAge()+"\n"+client.getAddress());
 		
 		
 		
@@ -79,4 +77,12 @@ try {
 	Client client3 = new Client("Gemy",25,"Elmansoura");
 	*/
 
+/*Client client = session.get(Client.class, z);
+		
 
+		session.getTransaction().commit();
+		
+		System.out.println("commit Success");
+		
+		System.out.println(client.getFullName()+ "\n" +client.getAge()+"\n"+client.getAddress());
+		*/

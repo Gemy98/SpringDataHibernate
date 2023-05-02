@@ -50,7 +50,16 @@ public class Client {
 	public String getAddress() {
 		return address;
 	}
+	public Client() {
+		//super();
+	}
 	public void setAddress(String address) {
+		this.address = address;
+	}
+	public Client(String fullName, int age, String address) {
+		super();
+		this.fullName = fullName;
+		this.age = age;
 		this.address = address;
 	} 
 	

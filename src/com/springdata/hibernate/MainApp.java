@@ -23,20 +23,25 @@ public class MainApp {
 				.buildSessionFactory();		
 		 Session session = factory.getCurrentSession();
 		
-		 
-	Client client = new Client();
-	//client.setId((long)1);
-	client.setAge(20);
-	client.setAddress("Cairo");
-	client.setFullName("MohamedGamal");
+	
+		 	
 	
 	
+	
+	long z = 2 ; 
 	try {
 		session.beginTransaction();
-		session.save(client);
+		
+		Client client = session.get(Client.class, z);
+		
+
 		session.getTransaction().commit();
 		
 		System.out.println("commit Success");
+		
+		System.out.println(client.getFullName()+ "\n" +client.getAge()+"\n"+client.getAddress());
+		
+		
 		
 	} catch (Exception e) {
 		// TODO Auto-generated catch block
@@ -67,3 +72,11 @@ try {
 	System.out.println(e.toString());
 }
 */
+
+/*	 
+	Client client1 = new Client("Gemy",25,"Elmansoura");
+	Client client2  = new Client("Gemy",25,"Elmansoura");
+	Client client3 = new Client("Gemy",25,"Elmansoura");
+	*/
+
+

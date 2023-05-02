@@ -30,15 +30,15 @@ public class MainApp {
 	
 	long z = 2 ; 
 	try {
+		
 		session.beginTransaction();
-		Client c = new Client("ahmed",30,"tanta");
+		Client c = new Client();
 		c.setId((long)2);
-		session.update(c);
+		session.delete(c);
 			
 		session.getTransaction().commit();
 		
 		System.out.println("commit Success");
-		
 		
 		
 	} catch (Exception e) {
@@ -85,4 +85,15 @@ try {
 		System.out.println("commit Success");
 		
 		System.out.println(client.getFullName()+ "\n" +client.getAge()+"\n"+client.getAddress());
+		*/
+
+
+/*session.beginTransaction();
+		Client c = new Client("ahmed",30,"tanta");
+		c.setId((long)2);
+		session.update(c);
+			
+		session.getTransaction().commit();
+		
+		System.out.println("commit Success");
 		*/

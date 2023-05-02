@@ -3,6 +3,7 @@ package com.springdata.hibernate;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Random;
 
 import org.hibernate.Session;
@@ -30,15 +31,24 @@ public class MainApp {
 	
 	long z = 2 ; 
 	try {
-		
-		session.beginTransaction();
 		Client c = new Client();
-		c.setId((long)2);
-		session.delete(c);
-			
-		session.getTransaction().commit();
+		session.beginTransaction();
+		
+		List<Client> clients = session.createQuery("from Client c where c.id =2")
+				.list();
+		
+		for (int i = 0 ; i < clients.size();i++) {
+			System.out.println(clients.get(i).getFullName());
+		}	
+		
+		
+		 session.createQuery("update Client set age=100 where id = 5")
+				.executeUpdate();	
+		
 		
 		System.out.println("commit Success");
+		
+		
 		
 		
 	} catch (Exception e) {
@@ -97,3 +107,12 @@ try {
 		
 		System.out.println("commit Success");
 		*/
+
+/*Client c = new Client();
+c.setId((long)2);
+session.delete(c);
+	
+session.getTransaction().commit();
+
+System.out.println("commit Success");
+*/

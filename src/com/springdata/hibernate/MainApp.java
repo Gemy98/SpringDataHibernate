@@ -37,22 +37,27 @@ public class MainApp {
 		Client c = new Client();
 		session.beginTransaction();
 		
-		// List<Client> clients =
-				
-				 Query q = session.createQuery("from Client where id = ?1 or fullName =:V1");
-				 q.setInteger(1, 3);
-				 q.setString("V1","ahmed");
-				 q.setFirstResult(0);
-				 q.setMaxResults(4);
-				 
-				 List<Client>  l = q.list()  ;
-				 
-				 // .list();
 		
-				 
-		for (int i = 0 ; i < l.size();i++) {
-			System.out.println(l.get(i).getFullName());
-		}	
+		Query q1 = session.createQuery("select Max(id) from Client ");// the maximum id
+		Query q2 = session.createQuery("select min(id) from Client ");// the minimum id 
+		Query q3 = session.createQuery("select sum(id) from Client ");// add all values to a variable and show it 
+		Query q4= session.createQuery("select avg(age) from Client "); // sum of values divided by how many value
+		Query q5= session.createQuery("select count(id) from Client "); // how many values ( no count for empty column )
+		Query q6= session.createQuery("select count(distinct address) from Client "); // how many values ( no count for empty column and repeated value )
+
+
+		
+		
+		
+		
+		System.out.println(q1.list().get(0));
+		System.out.println(q2.list().get(0));
+		System.out.println(q3.list().get(0));
+		System.out.println(q4.list().get(0));
+		System.out.println(q5.list().get(0));
+		System.out.println(q6.list().get(0));
+
+				
 		session.getTransaction().commit();
 		
 		// session.createQuery("update Client set age=100 where id = 5")
@@ -129,3 +134,17 @@ session.getTransaction().commit();
 
 System.out.println("commit Success");
 */
+/* Query q = session.createQuery("from Client where id = ?1 or fullName =:V1");
+q.setInteger(1, 3);
+q.setString("V1","ahmed");
+q.setFirstResult(0);
+q.setMaxResults(4);
+
+List<Client>  l = q.list()  ;
+
+// .list();
+
+
+for (int i = 0 ; i < l.size();i++) {
+System.out.println(l.get(i).getFullName());
+}	*/

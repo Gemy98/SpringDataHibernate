@@ -1,6 +1,7 @@
 package com.springdata.hibernate;
 
 import java.sql.Connection;
+
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
@@ -9,6 +10,8 @@ import java.util.Random;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.Query;
+
 
 import com.mysql.cj.protocol.x.Notice.XSessionVariableChanged;
 import com.springdata.hibernate.model.Client;
@@ -34,16 +37,26 @@ public class MainApp {
 		Client c = new Client();
 		session.beginTransaction();
 		
-		List<Client> clients = session.createQuery("from Client c where c.id =2")
-				.list();
+		// List<Client> clients =
+				
+				 Query q = session.createQuery("from Client where id = ?1 or fullName =:V1");
+				 q.setInteger(1, 3);
+				 q.setString("V1","ahmed");
+				 q.setFirstResult(0);
+				 q.setMaxResults(4);
+				 
+				 List<Client>  l = q.list()  ;
+				 
+				 // .list();
 		
-		for (int i = 0 ; i < clients.size();i++) {
-			System.out.println(clients.get(i).getFullName());
+				 
+		for (int i = 0 ; i < l.size();i++) {
+			System.out.println(l.get(i).getFullName());
 		}	
+		session.getTransaction().commit();
 		
-		
-		 session.createQuery("update Client set age=100 where id = 5")
-				.executeUpdate();	
+		// session.createQuery("update Client set age=100 where id = 5")
+			//	.executeUpdate();	
 		
 		
 		System.out.println("commit Success");

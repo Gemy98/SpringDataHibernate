@@ -10,6 +10,11 @@ import java.util.Random;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.LogicalExpression;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 
 
@@ -34,31 +39,37 @@ public class MainApp {
 	
 	long z = 2 ; 
 	try {
-		Client c = new Client();
 		session.beginTransaction();
+		Long ar[] = {(long)1 , (long)4 , (long)5} ;
+		Criteria c = session.createCriteria(Client.class);
+		//c.setFirstResult(0);
+		//c.setMaxResults(4);
+			
+		//c.add(Restrictions.gt("id", (long)3)); // greater than 3
+		//c.add(Restrictions.lt("id", (long)3));  // less than 3 
+		//c.add(Restrictions.between("id", (long)2,(long)4));   //  betweeb 2 - 4 ( 2 - 3 - 4 ) 
+		//c.add(Restrictions.in("id", ar )); // taking id from a declared array
+		//c.add(Restrictions.isNotNull("address")); // all clients who don't have null address
+		//c.add(Restrictions.eq("fullName", "mohamed")); // getting equal name
+		// c.add(Restrictions.like("fullName", "a",MatchMode.START)); //searching with start a
 		
 		
-		Query q1 = session.createQuery("select Max(id) from Client ");// the maximum id
-		Query q2 = session.createQuery("select min(id) from Client ");// the minimum id 
-		Query q3 = session.createQuery("select sum(id) from Client ");// add all values to a variable and show it 
-		Query q4= session.createQuery("select avg(age) from Client "); // sum of values divided by how many value
-		Query q5= session.createQuery("select count(id) from Client "); // how many values ( no count for empty column )
-		Query q6= session.createQuery("select count(distinct address) from Client "); // how many values ( no count for empty column and repeated value )
-
-
+		Criterion c2 = Restrictions.eq("address", "alex");
+		Criterion c3 = Restrictions.eq("fullName", "ali");
+		
+		LogicalExpression or = Restrictions.or(c2, c3);
+		c.add(or);
 		
 		
 		
+		List<Client> client =  c.list();
 		
-		System.out.println(q1.list().get(0));
-		System.out.println(q2.list().get(0));
-		System.out.println(q3.list().get(0));
-		System.out.println(q4.list().get(0));
-		System.out.println(q5.list().get(0));
-		System.out.println(q6.list().get(0));
-
-				
-		session.getTransaction().commit();
+		for (int i = 0 ; i< client.size();i++) {
+			
+			System.out.println(client.get(i).getFullName()+ "    "+ client.get(i).getAge());
+		}
+		
+	//	session.getTransaction().commit();
 		
 		// session.createQuery("update Client set age=100 where id = 5")
 			//	.executeUpdate();	
@@ -72,7 +83,7 @@ public class MainApp {
 	} catch (Exception e) {
 		// TODO Auto-generated catch block
 	//	e.printStackTrace();
-		System.out.println("Failed to save this client");
+		System.out.println("Failed to save this client"+e);
 	}
 	finally {
 		session.close();
@@ -148,3 +159,25 @@ List<Client>  l = q.list()  ;
 for (int i = 0 ; i < l.size();i++) {
 System.out.println(l.get(i).getFullName());
 }	*/
+
+
+/*	
+Query q1 = session.createQuery("select Max(id) from Client ");// the maximum id
+Query q2 = session.createQuery("select min(id) from Client ");// the minimum id 
+Query q3 = session.createQuery("select sum(id) from Client ");// add all values to a variable and show it 
+Query q4= session.createQuery("select avg(age) from Client "); // sum of values divided by how many value
+Query q5= session.createQuery("select count(id) from Client "); // how many values ( no count for empty column )
+Query q6= session.createQuery("select count(distinct address) from Client "); // how many values ( no count for empty column and repeated value )
+
+
+
+
+
+
+System.out.println(q1.list().get(0));
+System.out.println(q2.list().get(0));
+System.out.println(q3.list().get(0));
+System.out.println(q4.list().get(0));
+System.out.println(q5.list().get(0));
+System.out.println(q6.list().get(0));
+*/

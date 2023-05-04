@@ -13,6 +13,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.LogicalExpression;
 import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -40,34 +41,23 @@ public class MainApp {
 	long z = 2 ; 
 	try {
 		session.beginTransaction();
-		Long ar[] = {(long)1 , (long)4 , (long)5} ;
+		
 		Criteria c = session.createCriteria(Client.class);
-		//c.setFirstResult(0);
-		//c.setMaxResults(4);
-			
-		//c.add(Restrictions.gt("id", (long)3)); // greater than 3
-		//c.add(Restrictions.lt("id", (long)3));  // less than 3 
-		//c.add(Restrictions.between("id", (long)2,(long)4));   //  betweeb 2 - 4 ( 2 - 3 - 4 ) 
-		//c.add(Restrictions.in("id", ar )); // taking id from a declared array
-		//c.add(Restrictions.isNotNull("address")); // all clients who don't have null address
-		//c.add(Restrictions.eq("fullName", "mohamed")); // getting equal name
-		// c.add(Restrictions.like("fullName", "a",MatchMode.START)); //searching with start a
-		
-		
-		Criterion c2 = Restrictions.eq("address", "alex");
-		Criterion c3 = Restrictions.eq("fullName", "ali");
-		
-		LogicalExpression or = Restrictions.or(c2, c3);
-		c.add(or);
-		
+		//c.setProjection(Projections.min("id"));
+		//c.setProjection(Projections.max("id"));
+		//c.setProjection(Projections.avg("id"));
+		//c.setProjection(Projections.sum("id"));
+		//c.setProjection(Projections.count("address"));
+		//c.setProjection(Projections.countDistinct("address"));
+		c.setProjection(Projections.countDistinct("address"));
 		
 		
 		List<Client> client =  c.list();
-		
-		for (int i = 0 ; i< client.size();i++) {
+		System.out.println("the minimum id is : "+ client.get(0));
+		/*for (int i = 0 ; i< client.size();i++) {
 			
 			System.out.println(client.get(i).getFullName()+ "    "+ client.get(i).getAge());
-		}
+		}*/
 		
 	//	session.getTransaction().commit();
 		
@@ -180,4 +170,27 @@ System.out.println(q3.list().get(0));
 System.out.println(q4.list().get(0));
 System.out.println(q5.list().get(0));
 System.out.println(q6.list().get(0));
+*/
+
+
+/*
+//c.setFirstResult(0);
+//c.setMaxResults(4);
+	
+//c.add(Restrictions.gt("id", (long)3)); // greater than 3
+//c.add(Restrictions.lt("id", (long)3));  // less than 3 
+//c.add(Restrictions.between("id", (long)2,(long)4));   //  betweeb 2 - 4 ( 2 - 3 - 4 ) 
+//c.add(Restrictions.in("id", ar )); // taking id from a declared array
+//c.add(Restrictions.isNotNull("address")); // all clients who don't have null address
+//c.add(Restrictions.eq("fullName", "mohamed")); // getting equal name
+// c.add(Restrictions.like("fullName", "a",MatchMode.START)); //searching with start a
+
+
+Criterion c2 = Restrictions.eq("address", "alex");
+Criterion c3 = Restrictions.eq("fullName", "ali");
+
+LogicalExpression or = Restrictions.or(c2, c3);
+c.add(or);
+
+
 */

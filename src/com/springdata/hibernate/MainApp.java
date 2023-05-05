@@ -53,7 +53,7 @@ public class MainApp {
 		System.out.println("name :"+ res.getName());
 		System.out.println("age :"+ res.getData().getAge());
 		
-		
+		session.delete(res);
 		
 		
 		

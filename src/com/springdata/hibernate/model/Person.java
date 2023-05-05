@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class Person {
 	
 	
-	@OneToOne(cascade = CascadeType.PERSIST)
+	@OneToOne(cascade = CascadeType.REFRESH)
 	@JoinColumn(name ="id_data")
 	Data data = new Data();
 	

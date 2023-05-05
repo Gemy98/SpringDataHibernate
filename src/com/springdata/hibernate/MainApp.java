@@ -44,17 +44,22 @@ public class MainApp {
 	long z = 2 ; 
 	try {
 		session.beginTransaction();
+	
 		
 		Person p = new Person();
-		p.setName("Mohamed Gamal");
+		p.setId(1);
+		
+		Person res = session.get(Person.class, p.getId());
+		System.out.println("name :"+ res.getName());
+		System.out.println("age :"+ res.getData().getAge());
 		
 		
-		Data d = new Data();
-		d.setAge("25");
 		
-		p.setData(d);
-		session.save(p);
-		session.save(d);
+		
+		
+		
+		//session.save(p);
+
 		
 		session.getTransaction().commit();
 		
@@ -211,3 +216,14 @@ System.out.println("the minimum id is : "+ client.get(0));
 
 // session.createQuery("update Client set age=100 where id = 5")
 	//	.executeUpdate();	
+
+
+/*	
+Person p = new Person();
+p.setName("Mohamed Gamal");
+
+
+Data d = new Data();
+d.setAge("25");
+//	session.save(d);
+*/

@@ -21,6 +21,8 @@ import org.hibernate.Query;
 
 import com.mysql.cj.protocol.x.Notice.XSessionVariableChanged;
 import com.springdata.hibernate.model.Client;
+import com.springdata.hibernate.model.Data;
+import com.springdata.hibernate.model.Person;
 
 public class MainApp {
 
@@ -29,7 +31,8 @@ public class MainApp {
 
 		SessionFactory factory = new Configuration()
 				.configure("hibernate.cfg.xml")
-				.addAnnotatedClass(Client.class)
+				.addAnnotatedClass(Person.class)
+				.addAnnotatedClass(Data.class)
 				.buildSessionFactory();		
 		 Session session = factory.getCurrentSession();
 		
@@ -42,27 +45,6 @@ public class MainApp {
 	try {
 		session.beginTransaction();
 		
-		Criteria c = session.createCriteria(Client.class);
-		//c.setProjection(Projections.min("id"));
-		//c.setProjection(Projections.max("id"));
-		//c.setProjection(Projections.avg("id"));
-		//c.setProjection(Projections.sum("id"));
-		//c.setProjection(Projections.count("address"));
-		//c.setProjection(Projections.countDistinct("address"));
-		c.setProjection(Projections.countDistinct("address"));
-		
-		
-		List<Client> client =  c.list();
-		System.out.println("the minimum id is : "+ client.get(0));
-		/*for (int i = 0 ; i< client.size();i++) {
-			
-			System.out.println(client.get(i).getFullName()+ "    "+ client.get(i).getAge());
-		}*/
-		
-	//	session.getTransaction().commit();
-		
-		// session.createQuery("update Client set age=100 where id = 5")
-			//	.executeUpdate();	
 		
 		
 		System.out.println("commit Success");
@@ -194,3 +176,26 @@ c.add(or);
 
 
 */
+
+
+/*Criteria c = session.createCriteria(Client.class);
+//c.setProjection(Projections.min("id"));
+//c.setProjection(Projections.max("id"));
+//c.setProjection(Projections.avg("id"));
+//c.setProjection(Projections.sum("id"));
+//c.setProjection(Projections.count("address"));
+//c.setProjection(Projections.countDistinct("address"));
+c.setProjection(Projections.countDistinct("address"));
+
+
+List<Client> client =  c.list();
+System.out.println("the minimum id is : "+ client.get(0));
+/*for (int i = 0 ; i< client.size();i++) {
+	
+	System.out.println(client.get(i).getFullName()+ "    "+ client.get(i).getAge());
+}*/
+
+//	session.getTransaction().commit();
+
+// session.createQuery("update Client set age=100 where id = 5")
+	//	.executeUpdate();	

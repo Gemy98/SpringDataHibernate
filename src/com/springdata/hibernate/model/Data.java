@@ -13,9 +13,7 @@ import javax.persistence.Table;
 @Table(name = "data")
 public class Data {
 
-	@OneToOne
-	@JoinColumn(name = "id_person")
-	Person person = new Person();
+	
 	
 	
 	@Id

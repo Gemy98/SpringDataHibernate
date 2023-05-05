@@ -45,6 +45,18 @@ public class MainApp {
 	try {
 		session.beginTransaction();
 		
+		Person p = new Person();
+		p.setName("Mohamed Gamal");
+		
+		
+		Data d = new Data();
+		d.setAge("25");
+		
+		p.setData(d);
+		session.save(p);
+		session.save(d);
+		
+		session.getTransaction().commit();
 		
 		
 		System.out.println("commit Success");

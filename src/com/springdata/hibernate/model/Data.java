@@ -5,12 +5,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "data")
 public class Data {
 
+	@OneToOne
+	@JoinColumn(name = "id_person")
+	Person person = new Person();
+	
 	
 	@Id
 	@Column(name = "id")

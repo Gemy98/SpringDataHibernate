@@ -45,22 +45,17 @@ public class MainApp {
 	try {
 		session.beginTransaction();
 	
+		Data d= new Data();
+		d.setId(1);
+		Data res= new Data();
 		
-		Person p = new Person();
-		p.setId(1);
+		res = session.get(Data.class,d.getId());
 		
-		Person res = session.get(Person.class, p.getId());
-		System.out.println("name :"+ res.getName());
-		System.out.println("age :"+ res.getData().getAge());
+		System.out.println("name :" +res.getP().getName());
+		System.out.println("Age :" +res.getAge());
 		
-		res.setName("Ahmed");
-		res.getData().setAge("22");
+		session.delete(res);
 		
-		
-		
-		
-		//session.save(p);
-
 		
 		session.getTransaction().commit();
 		
@@ -227,4 +222,21 @@ p.setName("Mohamed Gamal");
 Data d = new Data();
 d.setAge("25");
 //	session.save(d);
+*/
+
+/*
+Person p = new Person();
+p.setId(1);
+
+Person res = session.get(Person.class, p.getId());
+System.out.println("name :"+ res.getName());
+System.out.println("age :"+ res.getData().getAge());
+
+res.setName("Ahmed");
+res.getData().setAge("22");
+
+
+
+
+//session.save(p);
 */

@@ -1,5 +1,6 @@
 package com.springdata.hibernate.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,9 +14,20 @@ import javax.persistence.Table;
 @Table(name = "data")
 public class Data {
 
+	@OneToOne(mappedBy = "data",cascade = CascadeType.ALL)
+	private Person p;
 	
 	
 	
+	
+	public Person getP() {
+		return p;
+	}
+
+	public void setP(Person p) {
+		this.p = p;
+	}
+
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

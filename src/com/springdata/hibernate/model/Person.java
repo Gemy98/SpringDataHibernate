@@ -15,9 +15,9 @@ import javax.persistence.Table;
 public class Person {
 	
 	
-	@OneToOne(cascade = CascadeType.MERGE)
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name ="id_data")
-	Data data = new Data();
+	Data data;
 	
 	public Data getData() {
 		return data;

@@ -54,13 +54,18 @@ public class MainApp {
 		
 		student.setId(id);
 		student = session.get(Student.class, id);
-		student.setName("AA");
+	
+		session.delete(student);
+		
+		
+		
+		/*	student.setName("AA");
 		
 		student.getInfos().get(0).setPhone("01000000000");
 		student.getInfos().get(1).setPhone("01111111111");
 		
 		session.update(student);
-		
+		*/
 		/*
 		System.out.println(student2.getName());
 		

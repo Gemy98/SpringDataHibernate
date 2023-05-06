@@ -51,11 +51,19 @@ public class MainApp {
 	
 		int id = 2 ; 
 		Student student = new Student() ;
-		Student student2 = new Student() ;
-		student.setId(id);
-		student2 = session.get(Student.class, student.getId());
 		
+		student.setId(id);
+		student = session.get(Student.class, id);
+		student.setName("AA");
+		
+		student.getInfos().get(0).setPhone("01000000000");
+		student.getInfos().get(1).setPhone("01111111111");
+		
+		session.update(student);
+		
+		/*
 		System.out.println(student2.getName());
+		
 		
 		for(Info i : student2.getInfos()) {
 			

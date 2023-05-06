@@ -2,7 +2,9 @@ package com.springdata.hibernate.model;
 
 
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -21,15 +23,13 @@ public class Student {
 
 	
 	@OneToMany(cascade = CascadeType.ALL,mappedBy = "student")
-	private Set<Info> infos;
-	
-
-
-	public Set<Info> getInfos() {
+	private List<Info> infos = new ArrayList<>();
+		
+	public List<Info> getInfos() {
 		return infos;
 	}
 
-	public void setInfos(Set<Info> infos) {
+	public void setInfos(List<Info> infos) {
 		this.infos = infos;
 	}
 
@@ -40,7 +40,6 @@ public class Student {
 	private int id ; 
 	
 	public Student() {
-		infos = new HashSet<Info>();
 	}
 
 	public int getId() {

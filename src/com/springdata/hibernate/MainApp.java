@@ -22,7 +22,9 @@ import org.hibernate.Query;
 import com.mysql.cj.protocol.x.Notice.XSessionVariableChanged;
 import com.springdata.hibernate.model.Client;
 import com.springdata.hibernate.model.Data;
+import com.springdata.hibernate.model.Info;
 import com.springdata.hibernate.model.Person;
+import com.springdata.hibernate.model.Student;
 
 public class MainApp {
 
@@ -31,8 +33,8 @@ public class MainApp {
 
 		SessionFactory factory = new Configuration()
 				.configure("hibernate.cfg.xml")
-				.addAnnotatedClass(Person.class)
-				.addAnnotatedClass(Data.class)
+				.addAnnotatedClass(Student.class)
+				.addAnnotatedClass(Info.class)
 				.buildSessionFactory();		
 		 Session session = factory.getCurrentSession();
 		
@@ -45,16 +47,7 @@ public class MainApp {
 	try {
 		session.beginTransaction();
 	
-		Data d= new Data();
-		d.setId(1);
-		Data res= new Data();
 		
-		res = session.get(Data.class,d.getId());
-		
-		System.out.println("name :" +res.getP().getName());
-		System.out.println("Age :" +res.getAge());
-		
-		session.delete(res);
 		
 		
 		session.getTransaction().commit();

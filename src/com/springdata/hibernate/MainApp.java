@@ -49,33 +49,48 @@ public class MainApp {
 	try {
 		session.beginTransaction();
 	
+		int id = 2 ; 
+		Student student = new Student() ;
+		Student student2 = new Student() ;
+		student.setId(id);
+		student2 = session.get(Student.class, student.getId());
+		
+		System.out.println(student2.getName());
+		
+		for(Info i : student2.getInfos()) {
+			
+			System.out.println(i.getPhone());
+			
+		}
+		
+		
+		/*
 		Student student =new Student();
 		
-		student.setName("Gemy");
+		student.setName("Ahmed");
 		
 		Info info = new Info();
 		
-		info.setPhone("+201068440098");
+		info.setPhone("+201024556621");
 		info.setStudent(student);
 		Info info2 = new Info();
 		info2.setStudent(student);
 		
 		
 		
-		info2.setPhone("+201553525297");
+		info2.setPhone("+201557454895");
 		
-		/*Set<Info> infoos =new HashSet<Info>() ;
-		infoos.add(info);
-		infoos.add(info2);
+		//Set<Info> infoos =new HashSet<Info>() ;
+		//infoos.add(info);
+		//infoos.add(info2);
+		//student.setInfos(infoos);
 		
-		student.setInfos(infoos);
-		*/
 		
 		student.getInfos().add(info);
 		student.getInfos().add(info2);
 		
 		session.save(student);
-		
+		*/
 		session.getTransaction().commit();
 		
 		

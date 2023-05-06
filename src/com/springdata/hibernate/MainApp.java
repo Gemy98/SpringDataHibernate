@@ -4,8 +4,10 @@ import java.sql.Connection;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -47,8 +49,32 @@ public class MainApp {
 	try {
 		session.beginTransaction();
 	
+		Student student =new Student();
+		
+		student.setName("Gemy");
+		
+		Info info = new Info();
+		
+		info.setPhone("+201068440098");
+		info.setStudent(student);
+		Info info2 = new Info();
+		info2.setStudent(student);
 		
 		
+		
+		info2.setPhone("+201553525297");
+		
+		/*Set<Info> infoos =new HashSet<Info>() ;
+		infoos.add(info);
+		infoos.add(info2);
+		
+		student.setInfos(infoos);
+		*/
+		
+		student.getInfos().add(info);
+		student.getInfos().add(info2);
+		
+		session.save(student);
 		
 		session.getTransaction().commit();
 		

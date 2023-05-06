@@ -2,6 +2,7 @@ package com.springdata.hibernate.model;
 
 
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -39,7 +40,7 @@ public class Student {
 	private int id ; 
 	
 	public Student() {
-		
+		infos = new HashSet<Info>();
 	}
 
 	public int getId() {

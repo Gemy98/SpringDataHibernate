@@ -24,6 +24,8 @@ import org.hibernate.Query;
 import com.mysql.cj.protocol.x.Notice.XSessionVariableChanged;
 import com.springdata.hibernate.model.Client;
 import com.springdata.hibernate.model.Data;
+import com.springdata.hibernate.model.Car;
+import com.springdata.hibernate.model.Color;
 import com.springdata.hibernate.model.Info;
 import com.springdata.hibernate.model.Person;
 import com.springdata.hibernate.model.Student;
@@ -35,8 +37,8 @@ public class MainApp {
 
 		SessionFactory factory = new Configuration()
 				.configure("hibernate.cfg.xml")
-				.addAnnotatedClass(Student.class)
-				.addAnnotatedClass(Info.class)
+				.addAnnotatedClass(Car.class)
+				.addAnnotatedClass(Color.class)
 				.buildSessionFactory();		
 		 Session session = factory.getCurrentSession();
 		
@@ -49,62 +51,9 @@ public class MainApp {
 	try {
 		session.beginTransaction();
 	
-		int id = 2 ; 
-		Student student = new Student() ;
-		
-		student.setId(id);
-		student = session.get(Student.class, id);
-		session.close();
-
-		System.out.println(student.getName());
-		System.out.println(student.getInfos().get(0).getPhone());
-		
-		
-		/*	student.setName("AA");
-		
-		student.getInfos().get(0).setPhone("01000000000");
-		student.getInfos().get(1).setPhone("01111111111");
-		
-		session.update(student);
-		*/
-		/*
-		System.out.println(student2.getName());
-		
-		
-		for(Info i : student2.getInfos()) {
-			
-			System.out.println(i.getPhone());
-			
-		}
-		
-		
-		/*
-		Student student =new Student();
-		
-		student.setName("Ahmed");
-		
-		Info info = new Info();
-		
-		info.setPhone("+201024556621");
-		info.setStudent(student);
-		Info info2 = new Info();
-		info2.setStudent(student);
 		
 		
 		
-		info2.setPhone("+201557454895");
-		
-		//Set<Info> infoos =new HashSet<Info>() ;
-		//infoos.add(info);
-		//infoos.add(info2);
-		//student.setInfos(infoos);
-		
-		
-		student.getInfos().add(info);
-		student.getInfos().add(info2);
-		
-		session.save(student);
-		*/
 		session.getTransaction().commit();
 		
 		
@@ -119,7 +68,7 @@ public class MainApp {
 		System.out.println("Failed to save this client"+e);
 	}
 	finally {
-		//session.close();
+		session.close();
 	}
 		
 	}
@@ -287,4 +236,52 @@ res.getData().setAge("22");
 
 
 //session.save(p);
+*/
+
+
+
+/*	student.setName("AA");
+
+student.getInfos().get(0).setPhone("01000000000");
+student.getInfos().get(1).setPhone("01111111111");
+
+session.update(student);
+*/
+/*
+System.out.println(student2.getName());
+
+
+for(Info i : student2.getInfos()) {
+	
+	System.out.println(i.getPhone());
+	
+}
+
+
+/*
+Student student =new Student();
+
+student.setName("Ahmed");
+
+Info info = new Info();
+
+info.setPhone("+201024556621");
+info.setStudent(student);
+Info info2 = new Info();
+info2.setStudent(student);
+
+
+
+info2.setPhone("+201557454895");
+
+//Set<Info> infoos =new HashSet<Info>() ;
+//infoos.add(info);
+//infoos.add(info2);
+//student.setInfos(infoos);
+
+
+student.getInfos().add(info);
+student.getInfos().add(info2);
+
+session.save(student);
 */

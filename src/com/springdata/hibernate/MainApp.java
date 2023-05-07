@@ -54,9 +54,10 @@ public class MainApp {
 		
 		student.setId(id);
 		student = session.get(Student.class, id);
-	
-		session.delete(student);
-		
+		session.close();
+
+		System.out.println(student.getName());
+		System.out.println(student.getInfos().get(0).getPhone());
 		
 		
 		/*	student.setName("AA");
@@ -109,7 +110,7 @@ public class MainApp {
 		
 		System.out.println("commit Success");
 		
-		
+
 		
 		
 	} catch (Exception e) {
@@ -118,7 +119,7 @@ public class MainApp {
 		System.out.println("Failed to save this client"+e);
 	}
 	finally {
-		session.close();
+		//session.close();
 	}
 		
 	}

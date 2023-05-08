@@ -30,6 +30,8 @@ import com.springdata.hibernate.model.Info;
 import com.springdata.hibernate.model.Person;
 import com.springdata.hibernate.model.Student;
 
+import net.bytebuddy.implementation.bytecode.Addition;
+
 public class MainApp {
 
 	public static void main(String[] args) {
@@ -50,7 +52,76 @@ public class MainApp {
 	long z = 2 ; 
 	try {
 		session.beginTransaction();
-	
+		
+		/*Car c1 = new Car("Car1");
+		Car c2 = new Car("Car2");
+		Car c3 = new Car("Car3");
+		/////////////////////
+		Color co1 = new Color("Red");
+		Color co2 = new Color("Blue");
+		Color co3 = new Color("Yello");
+		//////////////////////
+		c1.getColors().add(co1);
+		c1.getColors().add(co1);
+		c1.getColors().add(co1);
+		////////////////////////
+		c2.getColors().add(co2);
+		c2.getColors().add(co2);
+		c2.getColors().add(co2);
+		////////////////////////
+		c3.getColors().add(co3);
+		c3.getColors().add(co3);
+		c3.getColors().add(co3);
+		////////////////////////
+		session.save(c1);
+		session.save(c2);
+		session.save(c3);
+		*/
+		
+		
+		
+		
+		
+		Car car1 = new Car("Mercedes");
+		Car car2 = new Car("BMW");
+		Car car3 = new Car("Toyota");
+		
+		
+		Color color1 = new Color("Red");
+		Color color2 = new Color("Green");
+		Color color3 = new Color("Blue");
+		
+		color1.getCars().add(car1);
+		color1.getCars().add(car3);
+		/////////////////
+		color2.getCars().add(car2);
+		color2.getCars().add(car3);
+		/////////////////
+		color3.getCars().add(car1);
+		color3.getCars().add(car2);
+		
+		
+		session.save(color1);
+		session.save(color2);
+		session.save(color3);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		

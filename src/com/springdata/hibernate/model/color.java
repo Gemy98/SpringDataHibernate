@@ -35,6 +35,11 @@ public class Color {
 	List<Car> cars = new ArrayList<Car >();
 	
 	
+	public Color(String name) {
+		super();
+		this.name = name;
+	}
+
 	public List<Car> getCars() {
 		return cars;
 	}

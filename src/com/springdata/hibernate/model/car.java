@@ -36,6 +36,12 @@ public class Car {
 	List<Color> colors = new ArrayList<Color>();
 	
 	
+	public Car(String name) {
+		super();
+		this.name = name;
+	}
+
+
 	public List<Color> getColors() {
 		return colors;
 	}

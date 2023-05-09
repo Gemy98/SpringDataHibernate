@@ -4,6 +4,7 @@ import java.sql.Connection;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
@@ -54,33 +55,21 @@ public class MainApp {
 	try {
 		session.beginTransaction();
 		
-		/*Car c = new Car();
+		Car C = session.get(Car.class, idz);
 		
-		c=  session.get(Car.class, 2);
+		C.setName("SnowWhite");
 		
-		session.close();
-		System.out.println(c.getName());
-		
-		
-		for (Color co :  c.getColors()) {
-			
-			System.out.println(co.getName());
-		}
-		*/
-		
-		Color C = new Color();
-		
-		C = session.get(Color.class, idz);
-		
-		session.close();
-		
-		System.out.println(C.getName());
-		
-		for (Car car : C.getCars()) {
-			
-			System.out.println(car.getName());
+		for (int i = 0 ; i < C.getColors().size();i++) {
+			List<Color> cs = new ArrayList<>();
+			cs.add(session.get(Color.class, 1));
+			cs.add(session.get(Color.class, 2));
+			C.setColors(cs);
 		}
 		
+		System.out.println(C.getColors().get(0).toString());
+		session.update(C);
+
+	
 		session.getTransaction().commit();
 		
 		
@@ -364,4 +353,31 @@ color3.getCars().add(car2);
 session.save(color1);
 session.save(color2);
 session.save(color3);
+*/
+/*Car c = new Car();
+
+c=  session.get(Car.class, 2);
+
+session.close();
+System.out.println(c.getName());
+
+
+for (Color co :  c.getColors()) {
+	
+	System.out.println(co.getName());
+}
+*/
+/*
+Color C = new Color();
+
+C = session.get(Color.class, idz);
+
+session.close();
+
+System.out.println(C.getName());
+
+for (Car car : C.getCars()) {
+	
+	System.out.println(car.getName());
+}
 */

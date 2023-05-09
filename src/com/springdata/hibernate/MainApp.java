@@ -57,17 +57,8 @@ public class MainApp {
 		
 		Car C = session.get(Car.class, idz);
 		
-		C.setName("SnowWhite");
+		session.delete(C);
 		
-		for (int i = 0 ; i < C.getColors().size();i++) {
-			List<Color> cs = new ArrayList<>();
-			cs.add(session.get(Color.class, 1));
-			cs.add(session.get(Color.class, 2));
-			C.setColors(cs);
-		}
-		
-		System.out.println(C.getColors().get(0).toString());
-		session.update(C);
 
 	
 		session.getTransaction().commit();
